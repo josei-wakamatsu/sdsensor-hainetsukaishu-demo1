@@ -129,6 +129,16 @@ const App = () => {
               </p>
             ))}
           </div>
+
+          {/* ✅ 追加：リアルタイム温度データ */}
+          <h2 className="text-md font-semibold text-gray-700 text-center mt-6 mb-2">リアルタイム温度</h2>
+          <div className="grid grid-cols-4 gap-4 text-center w-full">
+            {Object.entries(realTimeData.temperature || {}).map(([key, value]) => (
+              <p key={key} className="bg-gray-100 p-3 rounded-md shadow-md">
+                {temperatureLabels[key] ?? key}: <span className="font-bold">{value ?? "null"} °C</span>
+              </p>
+            ))}
+          </div>
         </div>
       ) : <p className="text-center">データなし (null)</p>}
     </div>
