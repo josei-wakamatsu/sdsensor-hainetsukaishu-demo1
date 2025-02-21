@@ -34,6 +34,14 @@ const App = () => {
     heavy_oil: "重油代 (円/h)",
   };
 
+  // 温度データのラベル変換マッピング
+  const temperatureLabels = {
+    tempC1: "給水1",
+    tempC2: "給水2",
+    tempC3: "排水1",
+    tempC4: "排水2",
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-white p-6">
       <h1 className="text-2xl font-bold text-center mb-4">排熱回収システム</h1>
@@ -108,6 +116,24 @@ const App = () => {
           </div>
         ) : (<p className="text-center">データなし (null)</p>)}
       </div>
+
+      {/* 単価とリアルタイム温度データ */}
+      {realTimeData ? (
+        <div className="bg-gray-50 p-4 rounded-lg shadow-md mt-6 text-sm">
+          <h2 className="text-md font-semibold text-gray-700 text-center mb-2">単価</h2>
+          <div className="grid grid-cols-4 gap-4 text-center">
+            {Object.entries(realTimeData.unitCosts || {}).map(([key, value]) => (
+              <p key={key}>{energyLabels[key] ?? key}: {value ?? "null"} 円/kWh</p>
+            ))}
+          </div>
+          <h2 className="text-md font-semibold text-gray-700 text-center mt-4 mb-2">リアルタイム温度</h2>
+          <div className="grid grid-cols-2 gap-2 text-center">
+            {Object.entries(realTimeData.temperature || {}).map(([key, value]) => (
+              <p key={key}>{temperatureLabels[key] ?? key}: {value ?? "null"} °C</p>
+            ))}
+          </div>
+        </div>
+      ) : (<p className="text-center">データなし (null)</p>)}
     </div>
   );
 };
