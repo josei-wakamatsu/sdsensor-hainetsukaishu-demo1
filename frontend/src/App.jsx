@@ -118,14 +118,14 @@ const App = () => {
         ) : <p className="text-center">データなし (null)</p>}
       </div>
 
-      {/* 単価とリアルタイム温度データ */}
+      {/* ✅ 単価とリアルタイム温度データ */}
       {realTimeData ? (
         <div className="w-full max-w-6xl bg-gray-50 p-6 rounded-lg shadow-md mt-6 text-sm flex flex-col items-center">
-          <h2 className="text-md font-semibold text-gray-700 text-center mb-2">リアルタイム温度</h2>
+          <h2 className="text-md font-semibold text-gray-700 text-center mb-2">単価</h2>
           <div className="grid grid-cols-4 gap-4 text-center w-full">
-            {Object.entries(realTimeData.temperature || {}).map(([key, value]) => (
+            {Object.entries(realTimeData.unitCosts || {}).map(([key, value]) => (
               <p key={key} className="bg-gray-100 p-3 rounded-md shadow-md">
-                {temperatureLabels[key] ?? key}: <span className="font-bold">{value ?? "null"} °C</span>
+                {energyLabels[key] ?? key}: <span className="font-bold">{value ?? "null"} 円/kWh</span>
               </p>
             ))}
           </div>
