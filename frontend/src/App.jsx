@@ -45,7 +45,9 @@ const App = () => {
               {Object.entries(realTimeData.cost.current || {}).map(([key, value]) => (
                 <div key={key} className="bg-white p-4 rounded-md shadow w-48">
                   <h3 className="text-gray-700">{energyLabels[key] ?? key}</h3>
-                  <p className="text-xl font-bold">{value ?? "null"} 円/h</p>
+                  <div className="bg-gray-200 p-3 rounded-md mt-2">
+                    <p className="text-xl font-bold">{value ?? "null"} 円/h</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -60,7 +62,9 @@ const App = () => {
               {Object.entries(realTimeData.cost.recovery || {}).map(([key, value]) => (
                 <div key={key} className="bg-white p-4 rounded-md shadow w-48">
                   <h3 className="text-gray-700">{energyLabels[key] ?? key}</h3>
-                  <p className="text-xl font-bold">{value ?? "null"} 円/h</p>
+                  <div className="bg-gray-200 p-3 rounded-md mt-2">
+                    <p className="text-xl font-bold">{value ?? "null"} 円/h</p>
+                  </div>
                 </div>
               ))}
             </div>
