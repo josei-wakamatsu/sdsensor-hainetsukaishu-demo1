@@ -111,11 +111,17 @@ app.get("/api/realtime", async (req, res) => {
         yearlyCurrent: yearlyCostCurrent,
         yearlyRecovery: yearlyCostRecovery,
       },
+      unitCosts, // ✅ 単価情報を追加
     });
   } catch (error) {
     console.error("Error fetching realtime data:", error);
     res.status(500).json({ error: "Failed to fetch data" });
   }
+});
+
+// ✅ **単価データの取得エンドポイント**
+app.get("/api/unitCosts", (req, res) => {
+  res.status(200).json({ unitCosts });
 });
 
 // サーバー動作確認エンドポイント
