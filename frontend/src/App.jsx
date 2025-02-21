@@ -77,14 +77,14 @@ const App = () => {
       {realTimeData && realTimeData.cost ? (
         <div className="bg-gray-100 p-6 rounded-lg shadow-md mt-6">
           <h2 className="text-lg font-semibold text-gray-800 text-center mb-4">年間コスト</h2>
-          <div className="grid grid-cols-2 gap-6 text-center">
-            <div className="bg-white p-4 rounded-md shadow w-48">
+          <div className="flex justify-between text-center">
+            <div className="bg-white p-4 rounded-md shadow w-1/2 mx-2">
               <h3 className="text-gray-700">現状の年間コスト</h3>
               {Object.entries(realTimeData.cost.yearlyCurrent || {}).map(([key, value]) => (
                 <p key={key}>{energyLabels[key] ?? key}: {value ?? "0.00"} 円/年</p>
               ))}
             </div>
-            <div className="bg-white p-4 rounded-md shadow w-48">
+            <div className="bg-white p-4 rounded-md shadow w-1/2 mx-2">
               <h3 className="text-gray-700">排熱回収装置の年間コストメリット</h3>
               {Object.entries(realTimeData.cost.yearlyRecovery || {}).map(([key, value]) => (
                 <p key={key}>{energyLabels[key] ?? key}: {value ?? "0.00"} 円/年</p>
@@ -93,30 +93,6 @@ const App = () => {
           </div>
         </div>
       ) : (<p className="text-center">年間コストデータなし (null)</p>)}
-
-
-      {/* ✅ 単価と温度データ */}
-      {realTimeData ? (
-        <div className="bg-gray-50 p-4 rounded-lg shadow-md mt-6 text-sm">
-          <h2 className="text-md font-semibold text-gray-700 text-center mb-2">単価とリアルタイムデータ</h2>
-          <div className="text-center">
-            <h3 className="text-gray-600 mb-2">単価</h3>
-            <div className="flex justify-center space-x-6">
-              {Object.entries(realTimeData.unitCosts || {}).map(([key, value]) => (
-                <p key={key}>{energyLabels[key] ?? key}: {value ?? "null"} 円/kWh</p>
-              ))}
-            </div>
-          </div>
-          <div className="text-center mt-4">
-            <h3 className="text-gray-600 mb-2">リアルタイム温度</h3>
-            <div className="grid grid-cols-2 gap-2">
-              {Object.entries(realTimeData.temperature || {}).map(([key, value]) => (
-                <p key={key}>{key}: {value ?? "null"} °C</p>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : (<p className="text-center">データなし (null)</p>)}
       <p className="text-gray-500 text-sm text-center mt-10">© 2006-2025 株式会社 ショウワ 無断転載禁止。</p>
     </div>
   );
