@@ -44,7 +44,6 @@ const App = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-white p-6">
-      
       <h1 className="text-2xl font-bold text-center mb-4">排熱回収システム</h1>
 
       <div className="w-full max-w-6xl grid grid-cols-2 gap-6 justify-center">
@@ -122,10 +121,12 @@ const App = () => {
       {/* 単価とリアルタイム温度データ */}
       {realTimeData ? (
         <div className="w-full max-w-6xl bg-gray-50 p-6 rounded-lg shadow-md mt-6 text-sm flex flex-col items-center">
-          <h2 className="text-md font-semibold text-gray-700 text-center mb-2">単価</h2>
-          <div className="grid grid-cols-4 gap-4 text-center">
-            {Object.entries(realTimeData.unitCosts || {}).map(([key, value]) => (
-              <p key={key}>{energyLabels[key] ?? key}: {value ?? "null"} 円/kWh</p>
+          <h2 className="text-md font-semibold text-gray-700 text-center mb-2">リアルタイム温度</h2>
+          <div className="grid grid-cols-4 gap-4 text-center w-full">
+            {Object.entries(realTimeData.temperature || {}).map(([key, value]) => (
+              <p key={key} className="bg-gray-100 p-3 rounded-md shadow-md">
+                {temperatureLabels[key] ?? key}: <span className="font-bold">{value ?? "null"} °C</span>
+              </p>
             ))}
           </div>
         </div>
