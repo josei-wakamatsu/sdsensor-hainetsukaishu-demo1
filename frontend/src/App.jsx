@@ -77,19 +77,23 @@ const App = () => {
       {realTimeData && realTimeData.cost ? (
         <div className="bg-gray-100 p-6 rounded-lg shadow-md mt-6">
           <h2 className="text-lg font-semibold text-gray-800 text-center mb-4">年間コスト</h2>
-          <div className="flex justify-between text-center">
-            <div className="bg-white p-4 rounded-md shadow w-1/2 mx-2">
-              <h3 className="text-gray-700">現状の年間コスト</h3>
-              {Object.entries(realTimeData.cost.yearlyCurrent || {}).map(([key, value]) => (
-                <p key={key}>{energyLabels[key] ?? key}: {value ?? "0.00"} 円/年</p>
-              ))}
-            </div>
-            <div className="bg-white p-4 rounded-md shadow w-1/2 mx-2">
-              <h3 className="text-gray-700">排熱回収装置の年間コストメリット</h3>
-              {Object.entries(realTimeData.cost.yearlyRecovery || {}).map(([key, value]) => (
-                <p key={key}>{energyLabels[key] ?? key}: {value ?? "0.00"} 円/年</p>
-              ))}
-            </div>
+          <div className="grid grid-cols-2 gap-4 text-center">
+            {Object.entries(realTimeData.cost.yearlyCurrent || {}).map(([key, value]) => (
+              <div key={key} className="bg-white p-4 rounded-md shadow w-48">
+                <h3 className="text-gray-700">{energyLabels[key] ?? key}</h3>
+                <div className="bg-gray-200 p-3 rounded-md mt-2">
+                  <p className="text-xl font-bold">{value ?? "0.00"} 円/年</p>
+                </div>
+              </div>
+            ))}
+            {Object.entries(realTimeData.cost.yearlyRecovery || {}).map(([key, value]) => (
+              <div key={key} className="bg-white p-4 rounded-md shadow w-48">
+                <h3 className="text-gray-700">{energyLabels[key] ?? key}</h3>
+                <div className="bg-gray-200 p-3 rounded-md mt-2">
+                  <p className="text-xl font-bold">{value ?? "0.00"} 円/年</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       ) : (<p className="text-center">年間コストデータなし (null)</p>)}
