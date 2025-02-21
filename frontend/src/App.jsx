@@ -29,10 +29,10 @@ const App = () => {
   // 日本語変換用マッピング
   const energyLabels = {
     electricity: "電気代",
-    gas: "プロパンガス", // ✅ ガス代を「プロパンガス」に変更
+    gas: "プロパンガス",
     kerosene: "灯油代",
     heavy_oil: "重油代",
-    gas_13A: "ガス(13A)代", // ✅ 13Aを「ガス(13A)代」に変更
+    gas_13A: "ガス(13A)代",
   };
 
   // 温度データのラベル変換マッピング
@@ -127,6 +127,16 @@ const App = () => {
             {Object.entries(realTimeData.unitCosts || {}).map(([key, value]) => (
               <p key={key} className="bg-gray-100 p-3 rounded-md shadow-md">
                 {energyLabels[key] ?? key}: <span className="font-bold">{value ?? "null"} 円/kWh</span>
+              </p>
+            ))}
+          </div>
+
+          {/* ✅ 追加：リアルタイム温度データ */}
+          <h2 className="text-md font-semibold text-gray-700 text-center mt-6 mb-2">リアルタイム温度</h2>
+          <div className="grid grid-cols-4 gap-4 text-center w-full">
+            {Object.entries(realTimeData.temperature || {}).map(([key, value]) => (
+              <p key={key} className="bg-gray-100 p-3 rounded-md shadow-md">
+                {temperatureLabels[key] ?? key}: <span className="font-bold">{value ?? "null"} °C</span>
               </p>
             ))}
           </div>
