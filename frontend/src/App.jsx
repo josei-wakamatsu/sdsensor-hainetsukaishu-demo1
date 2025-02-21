@@ -36,15 +36,16 @@ const App = () => {
 
   // 温度データのラベル変換マッピング
   const temperatureLabels = {
-    tempC1: "給水1",
-    tempC2: "給水2",
-    tempC3: "排水1",
-    tempC4: "排水2",
+    supply1: "給水1",
+    supply2: "給水2",
+    discharge1: "排水1",
+    discharge2: "排水2",
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-white p-6">
       <h1 className="text-2xl font-bold text-center mb-4">排熱回収システム</h1>
+
       <div className="grid grid-cols-2 gap-6">
         {/* 現状のリアルタイムのコスト */}
         {realTimeData && realTimeData.cost ? (
@@ -61,7 +62,9 @@ const App = () => {
               ))}
             </div>
           </div>
-        ) : (<p className="text-center">データなし (null)</p>)}
+        ) : (
+          <p className="text-center">データなし (null)</p>
+        )}
 
         {/* 排熱回収装置のコストメリット */}
         {realTimeData && realTimeData.cost ? (
@@ -78,7 +81,9 @@ const App = () => {
               ))}
             </div>
           </div>
-        ) : (<p className="text-center">データなし (null)</p>)}
+        ) : (
+          <p className="text-center">データなし (null)</p>
+        )}
       </div>
 
       <div className="grid grid-cols-2 gap-6 mt-6">
@@ -97,7 +102,9 @@ const App = () => {
               ))}
             </div>
           </div>
-        ) : (<p className="text-center">データなし (null)</p>)}
+        ) : (
+          <p className="text-center">データなし (null)</p>
+        )}
 
         {/* 排熱回収装置の年間コストメリット */}
         {realTimeData && realTimeData.cost ? (
@@ -114,7 +121,9 @@ const App = () => {
               ))}
             </div>
           </div>
-        ) : (<p className="text-center">データなし (null)</p>)}
+        ) : (
+          <p className="text-center">データなし (null)</p>
+        )}
       </div>
 
       {/* 単価とリアルタイム温度データ */}
@@ -133,7 +142,9 @@ const App = () => {
             ))}
           </div>
         </div>
-      ) : (<p className="text-center">データなし (null)</p>)}
+      ) : (
+        <p className="text-center">データなし (null)</p>
+      )}
     </div>
   );
 };
