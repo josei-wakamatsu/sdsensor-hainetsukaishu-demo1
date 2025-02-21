@@ -80,20 +80,14 @@ app.get("/api/realtime", async (req, res) => {
     const costCurrent = calculateCost(energyCurrent);
     const costRecovery = calculateCost(energyRecovery);
 
-    // 24時間 & 365日運用時のコストメリット
-    const yearlySavings = {
-      "24 hours": {
-        electricity: (costRecovery.electricity * 24).toFixed(2),
-        gas: (costRecovery.gas * 24).toFixed(2),
-        kerosene: (costRecovery.kerosene * 24).toFixed(2),
-        heavy_oil: (costRecovery.heavy_oil * 24).toFixed(2),
-      },
-      "365 days": {
-        electricity: (costRecovery.electricity * 365).toFixed(2),
-        gas: (costRecovery.gas * 365).toFixed(2),
-        kerosene: (costRecovery.kerosene * 365).toFixed(2),
-        heavy_oil: (costRecovery.heavy_oil * 365).toFixed(2),
-      },
+    // 365日24時間運用時の年間コスト
+    const yearlyCostCurrent = calculateCost(energyCurrent * 24 * 365);
+    const yearlyCostRecovery = calculateCost(energyRecovery * 24 * 365);
+
+    // 年間の熱量計算
+    const yearlyEnergy = {
+      "24 hours": (energyCurrent * 24).toFixed(2),
+      "365 days": (energyCurrent * 24 * 365).toFixed(2),
     };
 
     res.status(200).json({
@@ -109,12 +103,14 @@ app.get("/api/realtime", async (req, res) => {
       energy: {
         current: energyCurrent.toFixed(2),
         recovery: energyRecovery.toFixed(2),
+        yearly: yearlyEnergy,
       },
       cost: {
         current: costCurrent,
         recovery: costRecovery,
+        yearlyCurrent: yearlyCostCurrent,
+        yearlyRecovery: yearlyCostRecovery,
       },
-      yearlySavings,
     });
   } catch (error) {
     console.error("Error fetching realtime data:", error);
