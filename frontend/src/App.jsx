@@ -28,10 +28,10 @@ const App = () => {
 
   // 日本語変換用マッピング
   const energyLabels = {
-    electricity: "電気代 (円/h)",
-    gas: "ガス代 (円/h)",
-    kerosene: "灯油代 (円/h)",
-    heavy_oil: "重油代 (円/h)",
+    electricity: "電気代",
+    gas: "ガス代",
+    kerosene: "灯油代",
+    heavy_oil: "重油代",
   };
 
   // 温度データのラベル変換マッピング
