@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const backendUrl = "https://sdsensor-hainetsukaishu-demo1-backe.onrender.com";
+const backendUrl = "https://sdsensor1.onrender.com";
 
 const App = () => {
   const [realTimeData, setRealTimeData] = useState(null);
@@ -72,6 +72,23 @@ const App = () => {
           </div>
         ) : (<p className="text-center">データなし (null)</p>)}
       </div>
+
+      {/* ✅ 年間コストメリット */}
+      {realTimeData && realTimeData.yearlySavings ? (
+        <div className="bg-gray-100 p-6 rounded-lg shadow-md mt-6">
+          <h2 className="text-lg font-semibold text-gray-800 text-center mb-4">年間コストメリット</h2>
+          <div className="grid grid-cols-2 gap-4 text-center">
+            {Object.entries(realTimeData.yearlySavings["365 days"] || {}).map(([key, value]) => (
+              <div key={key} className="bg-white p-4 rounded-md shadow w-48">
+                <h3 className="text-gray-700">{energyLabels[key] ?? key}</h3>
+                <div className="bg-gray-200 p-3 rounded-md mt-2">
+                  <p className="text-xl font-bold">{value ?? "null"} 円/年</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (<p className="text-center">年間コストデータなし (null)</p>)}
 
       {/* ✅ 単価と温度データ（横一列 + 縦並び） */}
       {realTimeData ? (
